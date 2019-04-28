@@ -1,0 +1,137 @@
+
+    <html>
+    <head>
+        <title>Front-End Project</title>
+        <style type="text/css">
+            input {
+    border: 5px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+}
+        </style>
+        
+        <script>
+            
+            values=[];
+            num=[];
+            
+
+            function calc() {
+                
+                var x,y;
+                x=Number(document.getElementById('tb1').value);
+                y=Number(document.getElementById('tb2').value);
+                z = x * y;
+                
+                document.getElementById('total').value = z;
+                return z;
+  
+            }
+
+            function addRecord() {
+                a=Number(document.getElementById('tb1').value);
+                b=Number(document.getElementById('tb2').value);
+                
+                
+                if(a!=0 && b!=0){
+
+                    var value = parseInt(document.getElementById('number').value, 10);
+                    value = isNaN(value) ? 0 : value;
+                    value++;
+                    document.getElementById('number').value = value;
+
+                var inp = Number(document.getElementById('total').value);
+                values.push(inp);
+                inp.value = ""; 
+                
+                document.getElementById('tb1').value=0;
+                document.getElementById('tb2').value=0;
+                document.getElementById('total').value=0;
+                }
+                else
+                {
+                    alert("Please fill this!!");
+                    return false;
+                } 
+            }
+
+            function displayRecord() {
+                var n=parseFloat(prompt("Discount in percentage(%):","0"));
+                var m=n/100;
+                var sum=0;
+                for(var i=0;i<values.length;i++)
+                {
+                    sum=sum+values[i];
+                }
+                var o=parseFloat(sum);
+                var t= o - (o*m);
+                document.getElementById("values").innerHTML = values.join(", ");
+                document.getElementById("values1").innerHTML = sum;
+                document.getElementById("discount").innerHTML=n;
+                document.getElementById("finalPrice").innerHTML= t;
+
+            }
+
+            
+
+        </script>
+    </head>
+    <body>
+        <h2>Report</h2>
+
+    <form name="addem" action="" id="addem" style="background-color: #fcedd9" >
+        
+        <table>
+            <tr>
+                <td>Product No: </td>
+                <td><input type="text" id="number" value="1" readonly /></td>
+            </tr>
+            <tr>
+                <td>Description: </td>
+                <td><input type="text" name="description"/></td>
+            </tr>
+            <tr>
+                <td>Quantity: </td>
+                <td><input type="text" id="tb1" name="tb1" onkeyup="calc(this)"/></td>
+            </tr> 
+            <tr>
+                <td>Unit Price: </td>
+                <td><input type="text" id="tb2" name="tb2" onkeyup="calc(this)"/></td>
+            </tr>  
+            
+            <tr>
+                <td>Amount: </td>
+                <td><input id="total" name="total" value="0" readonly/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" name="Add" onclick="addRecord()" value="Add" />
+                    <input type="button" name="Show" value="Show" onclick="displayRecord()"/>
+                </td>
+            </tr>
+       </table>
+        
+        <!--<p> <span>Quntity:</span> <input type="text" id="tb1" name="tb1" onkeyup="calc(this)"/></p>
+        <p>Unit Price:  <input type="text" id="tb2" name="tb2" onkeyup="calc(this)"/></p>
+        <input id="total" name="total" value="0" />-->
+    </form>
+    </br>
+    <span>Prices: </span><span id='values'></span></div>
+    <br>
+    <span>SubToatal: </span><span id='values1'></span></div>
+    <br>
+    <span>Discount: </span><span id='discount'></span>%
+    <br>
+    <span>Total: </span><span id='finalPrice'></span></div>
+    </body>
+    </html>
